@@ -1,0 +1,28 @@
+<div class="liste-hotels">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Liste des hôtels</h2>
+    <button class="btn btn-success">Ajouter un hôtel</button>
+  </div>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Étoiles</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td>{{ hotel.nom }}</td>
+        <td>{{ hotel.adresse }}</td>
+        <td>{{ hotel.etoiles }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary me-2">Modifier</button>
+          <button class="btn btn-sm btn-danger">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
