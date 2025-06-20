@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule, RouterModule],
   templateUrl: './inscription.html',
-  styleUrl: './inscription.css'
+  styleUrls: ['./inscription.css']
 })
 export class Inscription {
-onSubmit() {
-    // Logique de soumission du formulaire
+  onSubmit() {
     console.log('Formulaire soumis');
   }
 }

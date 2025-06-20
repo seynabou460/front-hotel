@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-connexion',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule, RouterModule],
   templateUrl: './connexion.html',
-  styleUrl: './connexion.css'
+  styleUrls: ['./connexion.css']
 })
 export class Connexion {
-onSubmit() {
-    // Logique de soumission du formulaire
-    console.log('Formulaire soumis');
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+  onSubmit(event: Event) {
+  event.preventDefault();
+  if (isPlatformBrowser(this.platformId)) {
+    this.router.navigate(['/dashboard']);
   }
 }
-
+}

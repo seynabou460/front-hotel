@@ -1,21 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Accueil } from './pages/accueil/accueil';
-import { Connexion } from './pages/connexion/connexion';
-import { Inscription } from './pages/inscription/inscription';
-import { MotDePasseOublie } from './pages/mot-de-passe-oublie/mot-de-passe-oublie';
-import { Dashboard } from './pages/dashboard/dashboard';
-import { ListeHotels } from './pages/liste-hotels/liste-hotels';
-
 
 export const appRoutes: Routes = [
-  { path: '', component: Accueil },
-  { path: 'connexion', component: Connexion },
-  { path: 'inscription', component: Inscription },
-  { path: 'mot-de-passe-oublie', component: MotDePasseOublie },
-  { path: 'dashboard', component: Dashboard },
-  { path: 'liste-hotels', component: ListeHotels },
-  { path: '**', redirectTo: '' } // Redirection pour les routes inconnues
+  {
+    path: '',
+    component: Accueil
+  },
+  {
+    path: 'accueil',
+    loadComponent: () => import('./pages/accueil/accueil').then(m => m.Accueil)
+  },
+  {
+    path: 'connexion',
+    loadComponent: () => import('./pages/connexion/connexion').then(m => m.Connexion)
+  },
+  {
+    path: 'inscription',
+    loadComponent: () => import('./pages/inscription/inscription').then(m => m.Inscription)
+  },
+  {
+    path: 'mot-de-passe-oublie',
+    loadComponent: () => import('./pages/mot-de-passe-oublie/mot-de-passe-oublie').then(m => m.MotDePasseOublie)
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard)
+  },
+  {
+    path: 'liste-hotels',
+    loadComponent: () => import('./pages/liste-hotels/liste-hotels').then(m => m.ListeHotels)
+  },
+  {
+    path: '**', redirectTo: 'accueil'
+  }
 ];
 
 @NgModule({
