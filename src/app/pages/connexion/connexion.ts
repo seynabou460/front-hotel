@@ -2,6 +2,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-connexion',
@@ -16,9 +17,9 @@ export class Connexion {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  onSubmit(event: Event) {
-  event.preventDefault();
+  onSubmit(form: NgForm) {
   if (isPlatformBrowser(this.platformId)) {
+    console.log(form.value); // récupère email et password
     this.router.navigate(['/dashboard']);
   }
 }
