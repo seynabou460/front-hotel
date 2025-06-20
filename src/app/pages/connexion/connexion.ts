@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './connexion.css'
 })
 export class Connexion {
-
+onSubmit() {
+    // Logique de soumission du formulaire
+    console.log('Formulaire soumis');
+  }
 }
+

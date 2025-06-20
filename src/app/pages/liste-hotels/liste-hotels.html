@@ -1,28 +1,45 @@
-<div class="liste-hotels">
+<div class="liste-hotels container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Liste des hôtels</h2>
-    <button class="btn btn-success">Ajouter un hôtel</button>
+    <button class="btn btn-success" (click)="ajouterHotel()">
+      <i class="bi bi-plus-circle"></i> Ajouter un hôtel
+    </button>
   </div>
   
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>Étoiles</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let hotel of hotels">
-        <td>{{ hotel.nom }}</td>
-        <td>{{ hotel.adresse }}</td>
-        <td>{{ hotel.etoiles }}</td>
-        <td>
-          <button class="btn btn-sm btn-primary me-2">Modifier</button>
-          <button class="btn btn-sm btn-danger">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Étoiles</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hotel of hotels">
+          <td>
+            <div class="d-flex align-items-center">
+              <img [src]="hotel.image" alt="{{ hotel.nom }}" class="hotel-thumbnail me-3">
+              {{ hotel.nom }}
+            </div>
+          </td>
+          <td>{{ hotel.adresse }}</td>
+          <td>
+            <span class="badge bg-warning text-dark">
+              {{ hotel.etoiles }} <i class="bi bi-star-fill"></i>
+            </span>
+          </td>
+          <td class="text-end">
+            <a [routerLink]="['/hotel', hotel.id]" class="btn btn-sm btn-primary me-2">
+              <i class="bi bi-pencil-square"></i> Modifier
+            </a>
+            <button class="btn btn-sm btn-danger" (click)="supprimerHotel(hotel.id)">
+              <i class="bi bi-trash"></i> Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

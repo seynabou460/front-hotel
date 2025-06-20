@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './inscription.css'
 })
 export class Inscription {
-
+onSubmit() {
+    // Logique de soumission du formulaire
+    console.log('Formulaire soumis');
+  }
 }
