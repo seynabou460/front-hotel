@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <h2>Créer un compte</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="inscrire()">
+    <div class="mb-3">
+      <label>Email</label>
+      <input formControlName="email" type="email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label>Mot de passe</label>
+      <input formControlName="password" type="password" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary" [disabled]="registerForm.invalid">S'inscrire</button>
+
+    <div *ngIf="erreurMessage" class="text-danger mt-3">{{ erreurMessage }}</div>
+  </form>
+</div>

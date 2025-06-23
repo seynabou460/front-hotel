@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Accueil } from './pages/accueil/accueil';
+import { AuthGuard } from './guards/auth.guard';
 
 export const appRoutes: Routes = [
   {
     path: '',
-    component: Accueil
+    redirectTo: 'accueil',
+    pathMatch: 'full'
   },
   {
     path: 'accueil',
@@ -25,14 +26,17 @@ export const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard)
+    loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard),
+    canActivate: [AuthGuard]
   },
   {
     path: 'liste-hotels',
-    loadComponent: () => import('./pages/liste-hotels/liste-hotels').then(m => m.ListeHotels)
+    loadComponent: () => import('./pages/liste-hotels/liste-hotels').then(m => m.ListeHotelsComponent),
+    canActivate: [AuthGuard]
   },
   {
-    path: '**', redirectTo: 'accueil'
+    path: '**',
+    redirectTo: 'accueil'
   }
 ];
 
@@ -40,5 +44,4 @@ export const appRoutes: Routes = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}

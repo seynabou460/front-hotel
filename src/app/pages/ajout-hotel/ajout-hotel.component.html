@@ -1,0 +1,49 @@
+<div class="overlay">
+  <div class="modal">
+    <h2>CRÉER UN NOUVEL HÔTEL</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Nom de l'hôtel</label>
+        <input formControlName="name" type="text" placeholder="CAP Marniane" />
+      </div>
+
+      <div class="form-group">
+        <label>Adresse</label>
+        <input formControlName="address" type="text" placeholder="Les îles du Saloum, Mar Lodj" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input formControlName="email" type="email" placeholder="info@hotel.com" />
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input formControlName="phone" type="tel" placeholder="+221..." />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prix par nuit</label>
+          <input formControlName="price" type="number" placeholder="25000" />
+        </div>
+
+        <div class="form-group">
+          <label>Devise</label>
+          <select formControlName="currency">
+            <option value="XOF">F XOF</option>
+            <option value="EUR">€ EUR</option>
+            <option value="USD">$ USD</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ajouter une photo</label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Enregistrer</button>
+    </form>
+  </div>
+</div>

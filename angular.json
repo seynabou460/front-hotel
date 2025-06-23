@@ -18,8 +18,10 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "public",
+                "output": ""
+              },
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css"
@@ -28,7 +30,13 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "fileReplacements": [
+              {
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -44,12 +52,21 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": []
             }
           },
           "defaultConfiguration": "production"
@@ -76,15 +93,28 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": ""
               }
             ],
             "styles": [
               "src/styles.css"
             ]
           }
+        },
+        "prerender": {
+          "builder": "@angular/build:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "db91488e-fd2f-4966-a4fa-277bdba69273",
+    "schematicCollections": ["@schematics/angular"]
   }
 }

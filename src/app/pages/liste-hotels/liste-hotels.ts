@@ -10,29 +10,19 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './liste-hotels.html',
   styleUrls: ['./liste-hotels.css']
 })
-export class ListeHotels {
+export class ListeHotelsComponent { // ← Nom exporté proprement
   hotels = [
     {
       id: 1,
       nom: 'Hôtel Plaza',
       adresse: '12 Rue de la Paix, Paris',
-      etoiles: 5,
+      email: 'contact@plaza.com',
+      telephone: '01 23 45 67 89',
+      prix: 250000,
+      devise: 'FCFA',
       image: 'assets/hotel-plaza.jpg'
     },
-    {
-      id: 2,
-      nom: 'Residence Les Pins',
-      adresse: '45 Boulevard des Plages, Nice',
-      etoiles: 4,
-      image: 'assets/residence-pins.jpg'
-    },
-    {
-      id: 3,
-      nom: 'Château Mont Royal',
-      adresse: 'Chemin des Vignes, Bordeaux',
-      etoiles: 5,
-      image: 'assets/chateau-montroyal.jpg'
-    }
+    // autres hôtels...
   ];
 
   supprimerHotel(id: number) {
@@ -40,7 +30,6 @@ export class ListeHotels {
   }
 
   ajouterHotel() {
-    // Logique pour ouvrir un modal/formulaire
-    console.log('Ouverture du formulaire d\'ajout');
+    console.log("Ouverture du formulaire d'ajout");
   }
 }

@@ -1,26 +1,35 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './connexion.html',
   styleUrls: ['./connexion.css']
 })
 export class Connexion {
-  constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  email = '';
+  password = '';
+  erreur = '';
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(form: NgForm) {
-  if (isPlatformBrowser(this.platformId)) {
-    console.log(form.value); // récupère email et password
-    this.router.navigate(['/dashboard']);
+    if (form.invalid) return;
+
+    this.authService.login(this.email, this.password).subscribe({
+      next: (res) => {
+        console.log('✅ Connexion réussie', res);
+        this.router.navigate(['/dashboard']); // ou toute autre page protégée
+      },
+      error: (err) => {
+        console.error('❌ Erreur de connexion', err);
+        this.erreur = 'Email ou mot de passe incorrect.';
+      }
+    });
   }
-}
 }
